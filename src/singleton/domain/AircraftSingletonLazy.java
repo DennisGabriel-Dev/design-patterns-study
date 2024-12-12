@@ -23,7 +23,11 @@ public class AircraftSingletonLazy {
 
     public static AircraftSingletonLazy getINSTANCE() {
         if(INSTANCE == null){
-            INSTANCE = new AircraftSingletonLazy("0001-234");
+            synchronized (AircraftSingletonLazy.class){
+                if (INSTANCE == null){
+                    INSTANCE = new AircraftSingletonLazy("0001-234");
+                }
+            }
         }
         return INSTANCE;
     }
